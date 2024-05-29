@@ -77,12 +77,12 @@ export default function Cart() {
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="text-gray-500">
-                      <label
-                  htmlFor="quantity"
-                  className="inline mr-5 text-sm font-medium leading-6 text-gray-900"
-                >
-                  Qty
-                </label>
+                        <label
+                          htmlFor="quantity"
+                          className="inline mr-5 text-sm font-medium leading-6 text-gray-900"
+                        >
+                          Qty
+                        </label>
                         <select>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -114,25 +114,24 @@ export default function Cart() {
             Shipping and taxes calculated at checkout.
           </p>
           <div className="mt-6">
-            <a
-              href="#"
+            <Link to="/checkout"
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Checkout
-            </a>
+            </Link>
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
               or{" "}
-              <Link to='/'>
-              <button
-                type="button"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-                onClick={() => setOpen(false)}
-              >
-                Continue Shopping
-                <span aria-hidden="true"> &rarr;</span>
-              </button>
+              <Link to="/">
+                <button
+                  type="button"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  // onClick={() => setOpen(false)}
+                >
+                  Continue Shopping
+                  <span aria-hidden="true"> &rarr;</span>
+                </button>
               </Link>
             </p>
           </div>
