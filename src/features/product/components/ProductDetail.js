@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectedProductById } from "../ProductSlice";
 import { useParams } from "react-router-dom";
 import { fetchAllProuductByIdAsync } from "../ProductSlice";
+import { selectLoggedInUser } from "../../auth/authSlice";
+import { addToCartAsync } from "../../cart/cartSlice";
 
 // to do: in server data we will add colors, sizes , highlights etc.
 const colors = [
@@ -23,10 +25,10 @@ const sizes = [
   { name: "3XL", inStock: true },
 ];
 const highlights = [
-  'Hand cur and sewn locally',
-  'Dyed with our proprietary colors',
-  'Pre-washed and pre-shrunk',
-  'Made with organic cotton',
+  "Hand cur and sewn locally",
+  "Dyed with our proprietary colors",
+  "Pre-washed and pre-shrunk",
+  "Made with organic cotton",
 ];
 
 function classNames(...classes) {
@@ -36,9 +38,15 @@ function classNames(...classes) {
 export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
+  const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectedProductById);
   const dispatch = useDispatch();
   const params = useParams();
+
+  const handleCart = (e) => {
+    e.preventDefault();
+    dispatch(addToCartAsync({ ...product, quantity: 1, user: user.id }));
+  };
 
   useEffect(() => {
     dispatch(fetchAllProuductByIdAsync(params.id));
@@ -302,10 +310,10 @@ export default function ProductDetail() {
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                     {highlights.map((highlight) => (
-                        <li key={highlight} className="text-gray-400">
-                          <span className="text-gray-600">{highlight}</span>
-                        </li>
-                      ))}
+                      <li key={highlight} className="text-gray-400">
+                        <span className="text-gray-600">{highlight}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

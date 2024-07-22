@@ -1,7 +1,37 @@
-export function fetchCount(amount = 1) {
+export function createUser(userData) {
   return new Promise(async(resolve) =>{
-    const response = await fetch('https://localhost:8000');
+    const response = await fetch('http://localhost:8080/users',{
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
     const data = await response.json();
+    // To Do: on server it will only return some info of user but not password
+    resolve({data})
+  }
+  );
+}
+
+export function checkUser(loginInfo) {
+  return new Promise(async(resolve, reject) =>{
+    const email = loginInfo.email;
+    const password = loginInfo.password;
+    const response = await fetch('http://localhost:8080/users?email='+email);
+    const data = await response.json();
+
+    if(data.length){
+      if(password !== data[0].password){
+        resolve({data: data[0]});
+      } else{
+        reject({message: 'Wrong credentials'});
+      }
+    } 
+    else{
+      reject({message: 'User not found'})
+    }
+    // To Do: on server it will only return some info of user but not password
     resolve({data})
   }
   );

@@ -4,7 +4,7 @@ import {
   increment,
   incrementAsync,
   selectCount,
-} from "../features/cart/CartSlice";
+} from "../features/cart/cartSlice";
 import {
   Dialog,
   DialogPanel,
@@ -228,20 +228,20 @@ function Checkout() {
                 </div>
               </div>
 
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-              <button
-                type="button"
-                class="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Add Address
-              </button>
-            </div>
+              <div class="mt-6 flex items-center justify-end gap-x-6">
+                <button
+                  type="button"
+                  class="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Reset
+                </button>
+                <button
+                  type="submit"
+                  class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Add Address
+                </button>
+              </div>
 
               <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-base font-semibold leading-7 text-gray-900">
@@ -399,7 +399,8 @@ function Checkout() {
                 Shipping and taxes calculated at checkout.
               </p>
               <div className="mt-6">
-                <Link to="/pay"
+                <Link
+                  to="/pay"
                   className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Pay and Order
