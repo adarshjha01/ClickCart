@@ -10,6 +10,7 @@ export const incrementAsync = createAsyncThunk(
   'counter/fetchCount',
   async (amount) => {
     const response = await fetchCount(amount);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -17,14 +18,11 @@ export const incrementAsync = createAsyncThunk(
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
-
   reducers: {
     increment: (state) => {
       state.value += 1;
     },
   },
-
-
   extraReducers: (builder) => {
     builder
       .addCase(incrementAsync.pending, (state) => {
